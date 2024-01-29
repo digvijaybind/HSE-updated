@@ -8,7 +8,7 @@ const LoadScreen = ({navigation}) => {
   useEffect(() => {
     // Simulate loading tasks
     setTimeout(() => {
-      navigation.navigate('Home'); // Navigate to the Home screen after loading tasks
+      navigation.navigate('tabnavigation'); // Navigate to the Home screen after loading tasks
     }, 2000);
   }, [navigation]);
   return (

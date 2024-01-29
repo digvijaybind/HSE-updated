@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+/*eslint-disable*/
+import React, {useState,useEffect} from 'react';
 import {
   Alert,
   SafeAreaView,
@@ -50,12 +51,11 @@ function App() {
       });
   };
 
-  const onPressApi = () => {};
   return (
-    <View>
+    <View style={{flex:1}}>
+    <StatusBar translucent backgroundColor="transparent" />
       <NavigationContainer>
         <AppNavigator />
-        <Text>hi there</Text>
       </NavigationContainer>
 
       {/* <Text>hiiir</Text>
