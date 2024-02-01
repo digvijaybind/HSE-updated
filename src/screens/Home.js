@@ -1,9 +1,15 @@
 /*eslint-disable*/
 import React,{useState} from 'react';
-import {View, Text, StyleSheet, FlatList,ScrollView,SafeAreaView} from 'react-native';
+import {View, Text, StyleSheet, FlatList,ScrollView,SafeAreaView,Image} from 'react-native';
 import HorizontalCard from '../components/cards/HorizontalCard';
 import VerticalCards from '../components/cards/VerticalCards';
 import FilterTags from '../components/tags/FilterTags';
+import LocationFilter from '../components/filterOptions/LocationFilter';
+import { Dropdown } from 'react-native-element-dropdown';
+import CountryFlag from 'react-native-country-flag';
+import OtherFilters from '../components/filterOptions/OtherFilters';
+import CurrencyFilter from '../components/filterOptions/CurrencyFilter';
+import KycHomeCard from '../components/kyc/KycHomeCard';
 const Home = () => {
   const [data, setdata] = useState([
     {
@@ -31,17 +37,27 @@ const Home = () => {
       rating:4.7,
     }
   ])
+  const [conutry, setconutry] = useState('')
   const tags=['Residential','Commercial','Affordable','Vacational','Exchange']
   return (
     <SafeAreaView style={styles.container}>
-    <ScrollView>
+    <View style={styles.topContainer}>
+    <View style={styles.kyc}>
+       <KycHomeCard/>
+    </View>
+    <View style={styles.filter}>
+    <LocationFilter/>
+    <OtherFilters/>
+    </View>
     <FilterTags data={tags}></FilterTags>
+    </View>
+    <ScrollView>
     <View horizontal>
       {data&&
       <FlatList
        data={data}
        horizontal
-       overScrollMode='always'
+       showsHorizontalScrollIndicator={false}
        renderItem={({item})=><HorizontalCard data={item}/>}
       ></FlatList>
       }
@@ -53,7 +69,9 @@ const Home = () => {
        renderItem={({})=>(<VerticalCards/>)}
       ></FlatList>
       </View>
+      <View style={{height:80}}/>
       </ScrollView>
+      
     </SafeAreaView>
   );
 };
@@ -61,8 +79,21 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-     height:"100%"
+    // height:"100%",
+    backgroundColor:'white',
+},
+  filter:{
+    padding:10, 
+    flexDirection:'row',
+    justifyContent:"space-between"
   },
+  kyc:{
+    paddingHorizontal:20,
+    width:"100%"
+  },
+  topContainer:{
+    paddingBottom:10
+  }
 });
 
 export default Home;

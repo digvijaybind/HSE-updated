@@ -13,8 +13,12 @@ export default function TabNavigator() {
   return (
      <Stack.Navigator screenOptions={{
         tabBarShowLabel:false,
-        tabBarStyle:TabBarstyle.tabBar
-     }} >
+        tabBarStyle:TabBarstyle.tabBar,
+        headerShown:false,
+        
+     }}
+     initialRouteName='home'
+      >
         <Stack.Screen name='home' component={Home} options={{
             tabBarIcon:({focused})=>(
             <View style={styles(focused).container}>

@@ -28,6 +28,7 @@ export default function FilterTags({data}) {
          ItemSeparatorComponent={()=>(<View style={{width:5}}></View>)}
          keyExtractor={(item, index) => index.toString()}
          renderItem={Tag}
+         showsHorizontalScrollIndicator={false}
         >
 </FlatList>
     </View>
