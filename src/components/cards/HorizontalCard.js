@@ -6,7 +6,7 @@ import Button from '../button/Button'
 import { Link } from '@react-navigation/native'
 import { standardPhoneWidth } from '../../utils/constant'
 
-export default function HorizontalCard({data}) {
+export default function HorizontalCard({data,navigation}) {
   const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
   const [width, setwidth] = useState(screenWidth>standardPhoneWidth?standardPhoneWidth:screenWidth)
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function HorizontalCard({data}) {
   return (
     <View style={{padding:20,width,}}>
    <View style={[styles().container]}>
-   <TouchableOpacity>
+   <TouchableOpacity onPress={()=>{navigation.navigate('propertyDetail',{data,navigation})}}>
      <ImageBackground source={{uri:data.image}} style={styles().image}>
      <View style={styles().innercontainer}>
       <View style={styles().feature}>
@@ -47,7 +47,7 @@ export default function HorizontalCard({data}) {
           <Text style={styles(15,'bold',lightColors.button).text}>4.7</Text>
           </View>
           <View style={styles().readMore}>
-          <Link to={'/'} style={styles(15,'normal',lightColors.button).text}>Read More</Link>
+          <Link to={'/propertyDetail'} style={styles(15,'normal',lightColors.button).text}>Read More</Link>
           </View>
          </View>
          <Button onPress={invest} title={'Invest now'} backgroundColor={lightColors.button} color={'white'} style={{width:"100%",padding:10,height:'auto',marginTop:10}}></Button>
@@ -64,7 +64,7 @@ const styles=(fontSize,fontWeight,color)=>StyleSheet.create({
     borderWidth:1,
     justifyContent:"flex-start",
     alignItems:"center",
-    padding:0.5,
+    padding:0.3,
     width:"100%",
   },
   image:{

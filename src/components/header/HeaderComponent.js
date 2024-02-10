@@ -3,11 +3,11 @@ import React from 'react'
 import { View,Text,TouchableOpacity,Image,StatusBar, StyleSheet } from 'react-native'
 import { lightColors } from '../../theme/color'
 
-export default function HeaderComponent({navigation}) {
+export default function HeaderComponent(props) {
   return (
     <View style={styles().container}>
     <View style={styles().innerContainer}>
-    <TouchableOpacity  >
+    <TouchableOpacity onPress={()=>{props.navigation.openDrawer()}}  >
       <Image style={styles().image} source={require('../../assets/images/hamburgermenu.png')}></Image>
     </TouchableOpacity>
     <Text style={styles().text}>Hello, User</Text>

@@ -7,6 +7,7 @@ import Saved from '../screens/Saved';
 import Profile from '../screens/Profile';
 import { StyleSheet,View,Text,Image } from 'react-native';
 import { lightColors } from '../theme/color';
+import HomeNavigation from './HomeNavigation';
 export default function TabNavigator() {
     const Stack=createBottomTabNavigator()
     

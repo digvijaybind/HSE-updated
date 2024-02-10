@@ -10,10 +10,11 @@ import CountryFlag from 'react-native-country-flag';
 import OtherFilters from '../components/filterOptions/OtherFilters';
 import CurrencyFilter from '../components/filterOptions/CurrencyFilter';
 import KycHomeCard from '../components/kyc/KycHomeCard';
-const Home = () => {
+import VerticalSeperator from '../components/seperator/VerticalSeperator';
+const Home = ({navigation}) => {
   const [data, setdata] = useState([
     {
-      image:'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?cs=srgb&dl=pexels-binyamin-mellish-186077.jpg&fm=jpg',
+      image:'https://static3.mansionglobal.com/production/media/article-images/8abd2609e007d3aac3da2a6db70da8c4/large_S1-GW207_DUBAIX_OR_20200723190514.jpg',
       invested:2,
       price:"4,22,00,000",
       location:"Deira Dubai UAE",
@@ -29,7 +30,7 @@ const Home = () => {
       rating:4.7,
     },
     {
-      image:'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?cs=srgb&dl=pexels-binyamin-mellish-186077.jpg&fm=jpg',
+      image:'https://luxury-houses.net/wp-content/uploads/2020/12/Design-Concept-of-the-Most-Outstanding-Mansion-in-Dubai-1.jpg',
       invested:2,
       price:"4,22,00,000",
       location:"Deira Dubai UAE",
@@ -51,25 +52,24 @@ const Home = () => {
     </View>
     <FilterTags data={tags}></FilterTags>
     </View>
-    <ScrollView>
-    <View horizontal>
+    <ScrollView showsVerticalScrollIndicator={false}>
+    <View style={styles.bottomContainer} horizontal>
       {data&&
-      <FlatList
+       <FlatList
        data={data}
        horizontal
        showsHorizontalScrollIndicator={false}
-       renderItem={({item})=><HorizontalCard data={item}/>}
-      ></FlatList>
+       renderItem={({item})=><HorizontalCard navigation={navigation} data={item}/>}
+      ></FlatList> 
       }
       </View>
-      <View style={{flex:1}}>
-      <FlatList
-       data={data}
-       ItemSeparatorComponent={()=>(<View style={{height:5}}></View>)}
-       renderItem={({})=>(<VerticalCards/>)}
-      ></FlatList>
+      <View style={styles.verticalcardContainer}>
+      {data&&data.map
+      ((item,index)=>
+      <VerticalCards key={index} data={item}/>
+      )}
       </View>
-      <View style={{height:80}}/>
+      <VerticalSeperator height={80}/>
       </ScrollView>
       
     </SafeAreaView>
@@ -92,7 +92,14 @@ const styles = StyleSheet.create({
     width:"100%"
   },
   topContainer:{
-    paddingBottom:10
+    paddingBottom:10,
+  },
+  bottomContainer:{
+   position:"relative"
+  },
+  verticalcardContainer:{
+    flex:1,
+    gap:10
   }
 });
 

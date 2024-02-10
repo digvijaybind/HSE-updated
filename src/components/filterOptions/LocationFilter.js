@@ -36,8 +36,6 @@ const style=()=>StyleSheet.create({
   dropdown:{
       maxWidth:130,
       borderRadius:10,
-      borderColor:"black",
-      borderWidth:1,
       paddingHorizontal:5,
       width:"30%",
       minWidth:130
@@ -49,7 +47,7 @@ const style=()=>StyleSheet.create({
   },
   placeholderStyle:{
       color:"black",
-      fontSize:15,
+      fontSize:20,
       fontWeight:"bold"
   },
   itemTextStyle:{
@@ -58,7 +56,7 @@ const style=()=>StyleSheet.create({
   containerStyle:{
       borderRadius:10,
       borderColor:"black",
-      borderWidth:1
+      borderWidth:0.5
   },
   renderItemContainer:{
       justifyContent:'space-between',
