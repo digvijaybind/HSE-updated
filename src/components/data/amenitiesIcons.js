@@ -10,7 +10,7 @@ const getData=async(term)=>{
       'Accept-Language': 'en-US', 
       'Accept': 'application/json', 
       'Content-Type': 'application/json', 
-      'X-Freepik-API-Key': 'FPSX568247845860450a971b1e6a8ec303f8'
+      'X-Freepik-API-Key': ''
     }
   };
     
