@@ -16,8 +16,8 @@ export default function InformationTags({selectedTag,setselectedTag}) {
      contentContainerStyle={{justifyContent:"space-evenly"}}
      ItemSeparatorComponent={()=>(<View style={{width:10}}></View>)}
      renderItem={({item})=>(
-     <TouchableOpacity onPress={()=>{onHandleChange(item)}} style={style( selectedTag===item?lightColors.button:'white').container}>
-       <Text style={textStyle(15,selectedTag===item?'white':lightColors.button,'bold').text}>{item}</Text>
+     <TouchableOpacity onPress={()=>{onHandleChange(item)}} style={style( selectedTag===item?lightColors.background.secondary:lightColors.background.primary).container}>
+       <Text style={textStyle(15,selectedTag===item?lightColors.text.tertiary:lightColors.text.primary,'bold').text}>{item}</Text>
      </TouchableOpacity>)}
      >
 
@@ -30,7 +30,7 @@ const style=(backgroundColor)=>StyleSheet.create({
         backgroundColor,
        
        borderRadius:12,
-       borderColor:lightColors.border,
+       borderColor:lightColors.border.primary,
        borderWidth:1,
        justifyContent:"center",
        alignItems:"center",

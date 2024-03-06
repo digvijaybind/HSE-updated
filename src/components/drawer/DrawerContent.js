@@ -1,69 +1,52 @@
 /*eslint-disable*/
 import React from 'react'
-import { StyleSheet,View ,Image,Text} from 'react-native'
-import { lightColors } from '../../theme/color'
+import { StyleSheet,View , StatusBar} from 'react-native'
+import { darkColors, lightColors } from '../../theme/color'
+import CustomText from '../text/CustomText'
+import { DrawerContentScrollView, DrawerItemList,} from '@react-navigation/drawer'
+import { useSelector } from 'react-redux'
+import userReducer from '../../redux/reducers'
 
-export default function DrawerContent() {
+export default function DrawerContent(props) {
+  const {darkMode}=useSelector(state=>state.userReducer)
+  console.log(StatusBar.currentHeight)
   return (
-    <View style={styles.drawerContainer}>
-      <View style={styles.drawerHeader}>
-        <Image source={{ uri: 'https://i.imgur.com/tI7uwUW.png' }} style={styles.drawerImage} />
-        <Text style={styles.drawerHeaderText}>Hello, User</Text>
+    <View style={styles().container}>
+      <DrawerContentScrollView 
+      {...props}
+      contentContainerStyle={styles().screenContainer}
+       >
+      
+       <View style={styles().header}>
+        <CustomText topic={"User"} color={lightColors.text.tertiary} fontSize={30} fontWeight={'bold'} />
       </View>
-      <View style={styles.drawerContent}>
-        <Text style={styles.drawerItem}>My Profile</Text>
-        <Text style={styles.drawerItem}>View Investments</Text>
-        {/* Add more drawer items here */}
-      </View>
-      <View style={styles.drawerFooter}>
-        <Text style={styles.drawerFooterText}>Logout</Text>
-      </View>
+      <View style={styles(darkMode).itemContainer}>
+       <DrawerItemList {...props} />
+       </View>
+      </DrawerContentScrollView>
     </View>
   )
 }
-const styles=StyleSheet.create({
+const styles=(darkMode)=>StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        flex: 1
       },
-      drawerContainer: {
-        flex: 1,
-        backgroundColor: '#fff',
-      },
-      drawerHeader: {
-        paddingTop: 40,
-        paddingHorizontal: 20,
-        flexDirection: 'row',
-        alignItems: 'center',
-      },
-      drawerImage: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        marginRight: 10,
-      },
-      drawerHeaderText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-      },
-      drawerContent: {
-        marginTop: 30,
-      },
-      drawerItem: {
-        fontSize: 16,
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
-      },
-      drawerFooter: {
-        marginTop: 30,
-        paddingVertical: 20,
-        borderTopWidth: 1,
-        borderTopColor: '#ddd',
-      },
-      drawerFooterText: {
-        fontSize: 16,
-        textAlign: 'center',
-      },
+   header:{
+        backgroundColor:lightColors.background.secondary,
+        height:100+StatusBar.currentHeight,
+        justifyContent:"center",
+        alignItems:"flex-start",
+        width:"100%",
+        paddingHorizontal:20,
+        paddingTop:StatusBar.currentHeight
+   },
+   screenContainer:{
+     flex:1,
+     paddingHorizontal:20,
+      backgroundColor:lightColors.background.secondary
+   },
+   itemContainer:{
+    flex:1,
+    backgroundColor:darkMode?darkColors.background.primary:lightColors.background.primary,
+   }
 })

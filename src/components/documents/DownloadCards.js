@@ -8,7 +8,7 @@ export default function DownloadCards({title,onPress}) {
     <View style={style().card}>
     <View style={style().headerContainer}>
      <View style={style().topicContainer}>
-        <CustomText topic={title} color={lightColors.button} fontSize={20} fontWeight={'bold'}/>
+        <CustomText topic={title} color={lightColors.text.primary} fontSize={20} fontWeight={'bold'}/>
      </View>
      <TouchableOpacity onPress={()=>{onPress(title)}}>
         <Image style={style().icon2} source={require('../../assets/images/pdfDownload.png')}></Image>
@@ -21,7 +21,7 @@ const style=()=>StyleSheet.create({
     card:{
         width:"100%",
         borderRadius:15,
-        borderColor:lightColors.button,
+        borderColor:lightColors.border.primary,
         borderWidth:1,
         padding:15,
         paddingBottom:15,
@@ -40,7 +40,7 @@ const style=()=>StyleSheet.create({
     icon2:{
         height:35,
         width:35,
-        tintColor:'black'
+        tintColor:lightColors.icon.secondary
     },
     fullWidth:{
         width:"100%"

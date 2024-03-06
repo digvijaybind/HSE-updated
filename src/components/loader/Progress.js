@@ -12,14 +12,14 @@ export default function Progress({value}) {
 const style=(value)=>StyleSheet.create({
     container:{
         width:'100%',
-        backgroundColor:'white',
+        backgroundColor:lightColors.background.primary,
         height:5,
         borderRadius:20
     },
     innerContainer:{
         height:5,
         borderRadius:20,
-        backgroundColor:lightColors.button,
+        backgroundColor:lightColors.background.secondary,
         width:`${value}%`
     }
 })

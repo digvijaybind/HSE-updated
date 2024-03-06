@@ -4,7 +4,8 @@ import ReactFlagsSelect from 'react-flags-select';
 import { View ,Text,StyleSheet} from 'react-native'
 import { Dropdown } from 'react-native-element-dropdown';
 import CountryFlag from 'react-native-country-flag';
-export default function LocationFilter() {
+import { darkColors, lightColors } from '../../theme/color';
+export default function LocationFilter({darkMode}) {
     const [selected, setSelected] = useState("");
     const [country, setcountry] = useState('')
   const onSelect = (code) => setSelected(code);
@@ -12,7 +13,7 @@ export default function LocationFilter() {
     <Dropdown
     style={style().dropdown}
     selectedTextStyle={style().selectedTextStyle}
-    placeholderStyle={style().placeholderStyle}
+    placeholderStyle={style(darkMode).placeholderStyle}
     data={[{label:'India',value:'in',isoCode:'in'},{label:'UAE',value:'ae',isoCode:'ae'}]}
     placeholder={country?country:"Location"}
     labelField={'label'}
@@ -20,6 +21,7 @@ export default function LocationFilter() {
     itemTextStyle={style().itemTextStyle}
     containerStyle={style().containerStyle}
     value={country}
+    iconColor={darkMode?darkColors.icon.secondary:lightColors.icon.secondary}
     onChange={item=>{
       setcountry(item.label)
     }}
@@ -32,7 +34,7 @@ export default function LocationFilter() {
     ></Dropdown>
   )
 }
-const style=()=>StyleSheet.create({
+const style=(darkMode)=>StyleSheet.create({
   dropdown:{
       maxWidth:130,
       borderRadius:10,
@@ -41,21 +43,21 @@ const style=()=>StyleSheet.create({
       minWidth:130
   },
   selectedTextStyle:{
-      color:"black",
+      color:lightColors.text.secondary,
       fontSize:15,
       fontWeight:"bold"
   },
   placeholderStyle:{
-      color:"black",
+      color:darkMode?darkColors.text.secondary:lightColors.text.secondary,
       fontSize:20,
       fontWeight:"bold"
   },
   itemTextStyle:{
-      color:"black"
+      color:lightColors.text.secondary
   },
   containerStyle:{
       borderRadius:10,
-      borderColor:"black",
+      borderColor:lightColors.border.secondary,
       borderWidth:0.5
   },
   renderItemContainer:{
@@ -65,7 +67,7 @@ const style=()=>StyleSheet.create({
       padding:10
   },
   renderItemText:{
-      color:'black',
+      color:lightColors.text.secondary,
       fontSize:15,
       fontWeight:"bold"
   }

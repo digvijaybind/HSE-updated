@@ -20,7 +20,7 @@ export default function FAQs() {
         ItemSeparatorComponent={()=>(<VerticalSeperator height={15}/>)}
         renderItem={({item})=>(<QuestionAnswerCards question={item.question} answer={item.answer}/>)}
     />} */}
-    {faqs&&faqs.map((item,index)=>( <View key={index}><QuestionAnswerCards question={item.question} answer={item.answer}/><VerticalSeperator height={15}/></View>))} 
+    {faqs&&faqs.map((item,index)=>( <View key={index}><QuestionAnswerCards  question={item.question} answer={item.answer}/><VerticalSeperator height={15}/></View>))} 
     </View>
   )
 }

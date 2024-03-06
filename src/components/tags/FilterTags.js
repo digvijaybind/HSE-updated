@@ -12,11 +12,11 @@ export default function FilterTags({data}) {
     const Tag=({item})=>(
         <TouchableOpacity onPress={()=>{onPress(item)}} 
         style={
-            style(active===item?lightColors.button:'white','',active===item?0:1).container
+            style(active===item?lightColors.background.secondary:lightColors.background.primary,'',active===item?0:1).container
             }>
             <Text 
             style={
-                style('',active===item?'white':'grey').text
+                style('',active===item?lightColors.text.tertiary:lightColors.text.grey).text
                 }>{item}</Text>
         </TouchableOpacity>
     )
@@ -39,7 +39,7 @@ const style=(backgroundColor,color,borderWidth)=>StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         padding:6,
-        borderColor:'grey',
+        borderColor:lightColors.border.quaternary,
         borderWidth,
         borderRadius:13,
         backgroundColor

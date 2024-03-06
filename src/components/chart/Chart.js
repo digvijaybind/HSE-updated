@@ -1,22 +1,23 @@
 /*eslint-disable*/
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import PieChart from 'react-native-pie-chart'
-import { lightColors } from '../../theme/color'
-import { color, price } from '../data/assetCosting'
+import { color, data, price } from '../data/assetCosting'
+import { VictoryPie } from "victory-native";
+
 export default function Chart() {
 
   return (
     <View>
-      <PieChart
-        widthAndHeight={250}
-        series={price}
-        sliceColor={color}
-        coverRadius={0.80}
-      />
+        {/* <VictoryPie
+          data={data}
+        /> */}
     </View>
   )
 }
 const style=()=>StyleSheet.create({
-
+   container:{
+    zIndex:2,
+    justifyContent:"center",
+    alignItems:"center"
+  }
 })

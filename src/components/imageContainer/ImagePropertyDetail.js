@@ -26,15 +26,15 @@ export default function ImagePropertyDetail({data,navigation}) {
   <View style={styles().lowerBox}>
   <View>
   <TouchableOpacity style={styles().viewContainers}>
-    <Image tintColor={lightColors.border} source={require('../../assets/images/360view.png')}></Image>
+    <Image tintColor={lightColors.icon.primary} source={require('../../assets/images/360view.png')}></Image>
   </TouchableOpacity>
-  <Text style={textStyle(10,'grey','normal').text}>View 360°</Text>
+  <Text style={textStyle(10,lightColors.text.grey,'normal').text}>View 360°</Text>
 </View>
 <View>
   <TouchableOpacity style={styles().viewContainers}>
-     <Image tintColor={lightColors.border} source={require('../../assets/images/playVideo.png')}></Image>
+     <Image tintColor={lightColors.icon.primary} source={require('../../assets/images/playVideo.png')}></Image>
   </TouchableOpacity>
-  <Text style={textStyle(10,'grey','normal').text}>Play Video</Text>
+  <Text style={textStyle(10,lightColors.text.grey,'normal').text}>Play Video</Text>
   </View>
   </View>
     </ImageBackground>
@@ -73,7 +73,7 @@ const styles=(tintColor)=>StyleSheet.create({
      tintColor 
     },
     viewContainers:{
-      backgroundColor:"white",
+      backgroundColor:lightColors.background.primary,
       borderRadius:100,
       borderWidth:1,
       marginRight:15,

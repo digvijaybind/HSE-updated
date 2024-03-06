@@ -1,6 +1,7 @@
 /*eslint-disable*/
 const { lightColors } = require("../../theme/color")
 const purchasePrice=42200000
+
   const fees={
     stampDuty:purchasePrice>2500000?7:6,
     registrationFee:1,
@@ -16,7 +17,7 @@ const purchasePrice=42200000
     purchasePrice*fees.corpusFee/100,
     purchasePrice*fees.brokerage/100
   ]
-  const color=[lightColors.button,'yellow','#ff09e6','pink','lightblue','blue']
+  const color=[lightColors.background.secondary,'yellow','#ff09e6','pink','lightblue','blue']
   const data=[
     {fee:'Purchase Price',amount:price[0],color:color[0]},
     {fee:'Stamp Duty',amount:price[1],color:color[1]},

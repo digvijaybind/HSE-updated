@@ -1,16 +1,24 @@
 /*eslint-disable*/
 import React from 'react'
 import { View,Text,TouchableOpacity,Image,StatusBar, StyleSheet } from 'react-native'
-import { lightColors } from '../../theme/color'
+import { darkColors, lightColors } from '../../theme/color'
+import { useNavigation } from '@react-navigation/native';
+import CustomText from '../text/CustomText';
+import { useSelector } from 'react-redux';
+import userReducer from '../../redux/reducers';
 
-export default function HeaderComponent(props) {
+export default function HeaderComponent({title,style}) {
+  const {darkMode}=useSelector(state=>state.userReducer)
+  const navigation = useNavigation();
   return (
-    <View style={styles().container}>
+    <View style={{backgroundColor:darkMode?darkColors.background.primary:lightColors.background.primary}}>
+<View style={[styles().container,style]}>
+    
     <View style={styles().innerContainer}>
-    <TouchableOpacity onPress={()=>{props.navigation.openDrawer()}}  >
+    <TouchableOpacity onPress={()=>{ navigation.openDrawer()}}  >
       <Image style={styles().image} source={require('../../assets/images/hamburgermenu.png')}></Image>
     </TouchableOpacity>
-    <Text style={styles().text}>Hello, User</Text>
+    <CustomText topic={title} fontSize={25} fontWeight={'bold'} color={'white'}/>
     </View>
     <View style={styles().innerContainer2}>
     <TouchableOpacity>
@@ -21,13 +29,13 @@ export default function HeaderComponent(props) {
     </TouchableOpacity>
     </View>
    </View>
+   </View>
   )
 }
 const styles=()=>StyleSheet.create({
     container:{
-        backgroundColor:lightColors.button,
+        backgroundColor:lightColors.background.secondary,
         height:110,
-        marginBottom:15,
         borderRadius:25,
         justifyContent:"space-between",
         paddingTop:StatusBar.currentHeight,
@@ -47,10 +55,10 @@ const styles=()=>StyleSheet.create({
     image:{
         height:35,
         width:35,
-        tintColor:"white",
+        tintColor:lightColors.icon.tertiary,
     },
     text:{
-        color:'white',
+        color:lightColors.text.tertiary,
         fontSize:25,
         fontWeight:"bold"
     },

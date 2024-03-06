@@ -4,7 +4,7 @@ import { View,StyleSheet } from 'react-native'
 import HorizontalSeperator from '../seperator/HorizontalSeperator'
 import CustomText from '../text/CustomText'
 
-export default function AssetPriceDisplay({item}) {
+export default function AssetPriceDisplay({item,rate,currency}) {
   return (
     <View style={style().container}>
     <View style={style().innerContainer}>
@@ -12,7 +12,7 @@ export default function AssetPriceDisplay({item}) {
      <HorizontalSeperator width={5}/>
        <CustomText topic={item.fee} color={'black'}></CustomText>
     </View>
-    <CustomText color={'black'} topic={`₹ ${(item.amount).toLocaleString()}`}/>
+    <CustomText color={'black'} topic={`${(+item.amount*rate).toLocaleString('en-Us',{style:'currency',currency})}`}/>
    </View>
   )
 }

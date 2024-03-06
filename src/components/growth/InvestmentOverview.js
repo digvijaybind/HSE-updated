@@ -1,12 +1,14 @@
 /*eslint-disable*/
 import { listenerCount } from 'npm'
-import React from 'react'
+import React,{useState} from 'react'
 import { StyleSheet, View ,Text,Image, TouchableOpacity} from 'react-native'
 import { lightColors } from '../../theme/color'
 import ProgressShow from '../loader/ProgressShow'
 import VerticalSeperator from '../seperator/VerticalSeperator'
 import CustomText from '../text/CustomText'
+
 export default function InvestmentOverview() {
+    const [open, setopen] = useState(0)
     const data={
         ageGrowth:"20.31",
         totalTokens:2030,
@@ -14,42 +16,53 @@ export default function InvestmentOverview() {
         tokensLeft:2000,
         invested:2
     }
+  const handleChange=()=>{
+    if(open==1){
+        setopen(0)
+    }
+    else{
+        setopen(1)
+    }
+  }
   return (
    <View style={style().card}>
      <View style={style().headerContainer}>
      <View style={style().topicContainer}>
-        <CustomText topic={'Investment Overview'} color={lightColors.text} fontSize={20} fontWeight={'bold'}/>
+        <CustomText topic={'Investment Overview'} color={lightColors.text.secondary} fontSize={20} fontWeight={'bold'}/>
          <TouchableOpacity>
         <Image style={style().icon}  source={require('../../assets/images/info.png')}></Image>
         </TouchableOpacity>
      </View>
-     <TouchableOpacity>
-        <Image style={style().icon2} source={require('../../assets/images/up.png')}></Image>
+     <TouchableOpacity onPress={handleChange}>
+        {open==1&&<Image style={style().icon2} source={require('../../assets/images/up.png')}></Image>}
+        {open==0&&<Image style={style().icon2} source={require('../../assets/images/down.png')}></Image>}
      </TouchableOpacity>
      </View>
+     {open==1&&
+        <View>
      <View style={style().middleContainer}>
       <View style={style().innerMiddleContainer}>
       <View style={[style().center,style().border]}>
-        <Text style={textStyle(12,lightColors.button,'normal').text}>
+        <Text style={textStyle(12,lightColors.text.primary,'normal').text}>
             Age Growth
         </Text>
-        <Text style={[textStyle(15,'black','bold').text]}>
+        <Text style={[textStyle(15,lightColors.text.secondary,'bold').text]}>
         <Image style={{height:20,width:20}}  source={require('../../assets/images/triangle.png')}></Image>
             {data.ageGrowth} %
         </Text>
         </View>
         <View style={[style().center,style().border]}>
-        <Text style={textStyle(12,lightColors.button,'normal').text}>
+        <Text style={textStyle(12,lightColors.text.primary,'normal').text}>
            Total Tokens
         </Text>
-        <Text style={[textStyle(15,'black','bold').text]}>{data.totalTokens.toLocaleString()}
+        <Text style={[textStyle(15,lightColors.text.secondary,'bold').text]}>{data.totalTokens.toLocaleString()}
         </Text>
         </View>
         <View style={style().center}>
-        <Text style={textStyle(12,lightColors.button,'normal').text}>
+        <Text style={textStyle(12,lightColors.text.primary,'normal').text}>
             Lock in
         </Text>
-        <Text style={[textStyle(15,'black','bold').text]}>{data.LockIn} Years
+        <Text style={[textStyle(15,lightColors.text.secondary,'bold').text]}>{data.LockIn} Years
         </Text>
         </View>
       </View>
@@ -60,10 +73,11 @@ export default function InvestmentOverview() {
         </View>
         <VerticalSeperator height={5}/>
         <View style={style().bottomEndContainer}>
-       <Text style={textStyle(13,lightColors.button,'normal').text}>{data.invested}% invested</Text>
-       <Text style={textStyle(13,lightColors.button,'normal').text}>{data.tokensLeft.toLocaleString()} Tokens left</Text>
+       <Text style={textStyle(13,lightColors.text.primary,'normal').text}>{data.invested}% invested</Text>
+       <Text style={textStyle(13,lightColors.text.primary,'normal').text}>{data.tokensLeft.toLocaleString()} Tokens left</Text>
         </View>
      </View>
+     </View>}
    </View>
   )
 }
@@ -71,7 +85,7 @@ const style=(invested)=>StyleSheet.create({
     card:{
         width:"100%",
         borderRadius:20,
-        borderColor:lightColors.button,
+        borderColor:lightColors.border.primary,
         borderWidth:1,
         padding:10,
         paddingBottom:15,
@@ -85,7 +99,7 @@ const style=(invested)=>StyleSheet.create({
     icon:{
         height:30,
         width:30,
-        tintColor:lightColors.button
+        tintColor:lightColors.icon.primary
     },
     headerContainer:{
         justifyContent:"space-between",
@@ -95,7 +109,7 @@ const style=(invested)=>StyleSheet.create({
     icon2:{
         height:20,
         width:20,
-        tintColor:lightColors.button
+        tintColor:lightColors.icon.primary
     },
     middleContainer:{
         flexDirection:'row',
@@ -113,7 +127,7 @@ const style=(invested)=>StyleSheet.create({
         alignItems:"center"
     },
     border:{
-        borderColor:"black",
+        borderColor:lightColors.border.secondary,
         borderRightWidth:1,
         paddingRight:10
     },
@@ -123,12 +137,12 @@ const style=(invested)=>StyleSheet.create({
     },
     loaderContainer:{
         width:"100%",
-        backgroundColor:"white",
+        backgroundColor:lightColors.background.primary,
         borderRadius:25,
         height:5
     },
     insideLoader:{
-        backgroundColor:lightColors.button,
+        backgroundColor:lightColors.background.secondary,
         width:`${invested}%`,
         height:5,
         borderRadius:25

@@ -17,12 +17,12 @@ const style=(width)=>StyleSheet.create({
     innercontainer:{
      width:"90%",
      height:6,
-     backgroundColor:'lightgrey',
+     backgroundColor:lightColors.background.quaternary,
      borderRadius:20,
      padding:0
     },
     progress:{
-     backgroundColor:lightColors.button,
+     backgroundColor:lightColors.background.secondary,
      width:`${(width/10)*100}%`,
      height:6,
      borderRadius:20
